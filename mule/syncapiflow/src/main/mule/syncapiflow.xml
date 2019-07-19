@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="e3a43aa7-e9d4-44b1-9ed4-c40519f07e51" >
+		<file:connection workingDir="C:\Users\madan\Desktop\New folder" />
+	</file:config>
+	<file:config name="File_Config1" doc:name="File Config" doc:id="a14df59c-66e4-44ce-9831-06adf57f71a0" >
+		<file:connection workingDir="C:\Users\madan\Desktop\New folder (2)" />
+	</file:config>
+	<flow name="syncapiflowFlow" doc:id="11322241-7ce0-47f3-ae07-b162e0aed325" >
+		<file:listener doc:name="On New or Updated File" doc:id="d044782e-63de-4725-a9f7-46d2d9543fb9" config-ref="File_Config">
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</file:listener>
+		<file:copy doc:name="Copy" doc:id="b0a0a429-9a39-46ef-92de-eacb900f01ad" config-ref="File_Config" sourcePath="C:\Users\madan\Desktop\New folder" targetPath="C:\Users\madan\Desktop\New folder1" overwrite="true"/>
+		<logger level="INFO" doc:name="Logger" doc:id="db3effd4-ff89-4244-bdb6-c57f6868dc53" message="it is there"/>
+	</flow>
+</mule>
